@@ -14,13 +14,13 @@ public class GroupProductRestTest {
 
     private final static String GROUP_PRODUCT_PATH = HOST + "/group_product";
 
-    @DisplayName("Country GET ID Request id=1 is status=200 is OK")
+    @DisplayName("GET GroupProduct by ID Request id=1 is status=200 is OK")
     @Test
     public void getByGroupProductId_1_StatusCode_200() {
         given().when().get(GROUP_PRODUCT_PATH + "/1").then().statusCode(HttpStatus.SC_OK);
     }
 
-    @DisplayName("Country GET ID Request id=1")
+    @DisplayName("Check DTO by GET GroupProduct with ID=1")
     @Test
     public void getByGroupProductId_1_checkDTO() {
         GroupProductDTO example = new GroupProductDTO(1L, "IT products",-1L, false);
