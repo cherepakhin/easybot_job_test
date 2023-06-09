@@ -2,7 +2,6 @@ package ru.perm.v.easybot.restassured;
 
 import io.qameta.allure.*;
 import org.apache.http.HttpStatus;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,7 @@ public class GroupProductRestTest {
 
     @DisplayName("Country GET all country is status=200")
     @Severity(SeverityLevel.NORMAL)
-    @Description(value = "Verify the HTTP answer of country id=1 is status=200")
+    @Description(value = "Verify the HTTP answer GET all products is status=200")
     @Test
     public void getGrouProductAll_and_StatusCode_200() {
         given().when().get(GROUP_PRODUCT_PATH + "/").then().statusCode(HttpStatus.SC_OK);
