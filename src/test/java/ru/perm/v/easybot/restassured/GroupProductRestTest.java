@@ -16,13 +16,13 @@ public class GroupProductRestTest {
 
     @DisplayName("Country GET ID Request id=1 is status=200 is OK")
     @Test
-    public void getByGroupProductIdStatusCode_200() {
+    public void getByGroupProductId_1_StatusCode_200() {
         given().when().get(GROUP_PRODUCT_PATH + "/1").then().statusCode(HttpStatus.SC_OK);
     }
 
     @DisplayName("Country GET ID Request id=1")
     @Test
-    public void getByGroupProductId_1() {
+    public void getByGroupProductId_1_checkDTO() {
         GroupProductDTO example = new GroupProductDTO(1L, "IT products",-1L, false);
         GroupProductDTO dto = given().when().get(GROUP_PRODUCT_PATH + "/1").andReturn().as(GroupProductDTO.class);
         assertEquals(example, dto);
