@@ -2,6 +2,7 @@ package ru.perm.v.easybot.restassured;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
@@ -9,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import ru.perm.v.easybot.restassured.dto.ProductDTO;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.perm.v.easybot.restassured.VARS.HOST;
 
 @DisplayName("Tests ProductRest")
@@ -63,5 +63,22 @@ public class ProductRestTest {
         assertEquals(dto.getName(), recievedDto.getName());
         assertEquals(dto.getGroupProductId(), recievedDto.getGroupProductId());
         assertTrue(recievedDto.getId().compareTo(0L) > 0);
+    }
+
+    @DisplayName("PUT Product with EMPTY name")
+    @Test
+    public void putProductWithEmptyName() throws JsonProcessingException {
+        Long GROUP_ID = 3L;
+        ProductDTO dto = new ProductDTO();
+        dto.setName("");
+        dto.setGroupProductId(GROUP_ID);
+        RequestSpecification httpRequest = given()
+                .header("Content-Type", "application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(dto);
+        httpRequest.body(json);
+
+        Response response = httpRequest.put(PRODUCT_PATH + "/");
+        assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusCode());
     }
 }

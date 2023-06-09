@@ -15,7 +15,7 @@
 # Проведение теста
 easybot_restassured$ mvn clean test
 # Просмотр отчета в браузере
-easybot_restassured$ ./allure serve target/surefire-reports/`
+easybot_restassured$ ./allure serve target/surefire-reports/
 ```
 
 ### Шпаргалка по вложенности
