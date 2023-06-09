@@ -57,6 +57,7 @@ public class ProductRestTest {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(dto);
         httpRequest.body(json);
+
         ProductDTO recievedDto = httpRequest.put(PRODUCT_PATH + "/").as(ProductDTO.class);
 
         assertEquals(dto.getName(), recievedDto.getName());
