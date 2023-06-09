@@ -18,7 +18,7 @@ public class ProductRestTest {
     @DisplayName("GET Product by ID Request id=31 is status=200 is OK")
     @Test
     public void getByProductById_31_StatusCode_200() {
-        given().when().get(PRODUCT_PATH + "/1").then().statusCode(HttpStatus.SC_OK);
+        given().when().get(PRODUCT_PATH + "/31").then().statusCode(HttpStatus.SC_OK);
     }
 
     @DisplayName("Check DTO by GET Product with ID=31")
