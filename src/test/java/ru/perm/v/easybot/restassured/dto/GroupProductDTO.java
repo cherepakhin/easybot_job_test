@@ -64,4 +64,14 @@ public class GroupProductDTO {
     public int hashCode() {
         return Objects.hash(id, name, parentId, isLast);
     }
+
+    @Override
+    public String toString() {
+        return "GroupProductDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", parentId=" + parentId +
+                ", isLast=" + isLast +
+                '}';
+    }
 }
