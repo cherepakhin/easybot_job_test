@@ -1,4 +1,4 @@
-### Behave тестирование RestAssured проекта Easybt
+### Behave тестирование RestAssured проекта Easybot
 
 Тестируемый проект [https://github.com/cherepakhin/easybot_job](https://github.com/cherepakhin/easybot_job)
 
