@@ -18,6 +18,7 @@ easybot_restassured$ mvn clean test
 easybot_restassured$ ./allure serve target/surefire-reports/
 ```
 
+![img.png](img.png)
 ### Шпаргалка по вложенности
 
 ![Epic-Feature-Story](doc/hierarchy.png)
