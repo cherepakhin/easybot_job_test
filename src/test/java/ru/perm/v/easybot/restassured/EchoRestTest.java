@@ -1,6 +1,5 @@
 package ru.perm.v.easybot.restassured;
 
-import io.qameta.allure.*;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
