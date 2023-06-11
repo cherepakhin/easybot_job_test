@@ -31,7 +31,7 @@ public class GroupProductRestTest {
 
     @DisplayName("Check Response status when GET GroupProduct with not exist ID")
     @Test
-    public void getByIfNotFoundGroupProductById() {
+    public void getByIdIfNotFoundGroupProduct() {
         Response response = given().when().get(GROUP_PRODUCT_PATH + "/1000");
         assertEquals(500, response.getStatusCode());
     }
