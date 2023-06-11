@@ -1,5 +1,6 @@
 package ru.perm.v.easybot.restassured;
 
+import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,4 +29,10 @@ public class GroupProductRestTest {
         assertEquals(example, dto);
     }
 
+    @DisplayName("Check Response status when GET GroupProduct with not exist ID")
+    @Test
+    public void getByIfNotFoundGroupProductById() {
+        Response response = given().when().get(GROUP_PRODUCT_PATH + "/1000");
+        assertEquals(500, response.getStatusCode());
+    }
 }
