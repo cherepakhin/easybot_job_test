@@ -5,18 +5,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.perm.v.easybot.restassured.dto.ProductDTO;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.perm.v.easybot.restassured.VARS.HOST;
 
 @DisplayName("Tests ProductRest")
 public class ProductRestTest {
 
+
     private final static String PRODUCT_PATH = HOST + "/product";
+
+    @BeforeEach
+    void init() {
+        given().when().get(HOST + "/tools/reset/db").then().statusCode(HttpStatus.SC_OK);
+    }
 
     @DisplayName("GET Product by ID Request id=31 is status=200 is OK")
     @Test
@@ -80,5 +88,15 @@ public class ProductRestTest {
 
         Response response = httpRequest.put(PRODUCT_PATH + "/");
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusCode());
+    }
+
+    @DisplayName("Reset Product")
+    @Test
+    public void resetProducts() throws JsonProcessingException {
+        Response response = given().when().get(PRODUCT_PATH + "/reset");
+        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
+
+        ProductDTO[] products = given().when().get(PRODUCT_PATH + "/").andReturn().as(ProductDTO[].class);
+        assertEquals(0, products.length);
     }
 }

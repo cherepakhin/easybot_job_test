@@ -24,7 +24,7 @@ public class GroupProductRestTest {
     @DisplayName("Check DTO by GET GroupProduct with ID=1")
     @Test
     public void getByGroupProductId_1_checkDTO() {
-        GroupProductDTO example = new GroupProductDTO(1L, "IT products",-1L, false);
+        GroupProductDTO example = new GroupProductDTO(1L, "IT products", -1L, false);
         GroupProductDTO dto = given().when().get(GROUP_PRODUCT_PATH + "/1").andReturn().as(GroupProductDTO.class);
         assertEquals(example, dto);
     }
@@ -34,5 +34,15 @@ public class GroupProductRestTest {
     public void getByIdIfNotFoundGroupProduct() {
         Response response = given().when().get(GROUP_PRODUCT_PATH + "/1000");
         assertEquals(500, response.getStatusCode());
+    }
+
+    @DisplayName("Reset GroupProduct")
+    @Test
+    public void resetGroups() {
+        Response response = given().when().get(GROUP_PRODUCT_PATH + "/reset");
+        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
+
+        GroupProductDTO[] groups = given().when().get(GROUP_PRODUCT_PATH + "/").andReturn().as(GroupProductDTO[].class);
+        assertEquals(1, groups.length);
     }
 }
